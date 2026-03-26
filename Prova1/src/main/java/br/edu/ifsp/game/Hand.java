@@ -5,9 +5,9 @@ import br.edu.ifsp.deck.Deck;
 
 public class Hand {
     private Card vira;
-    private Player player1;
+    private Player player1; // TODO se não há setters para player, é melhor colocar final, para evitar reatribuição por acidente
     private Player player2;
-    private Round[] rounds;
+    private Round[] rounds; // TODO idem aqui. Você vai colocar itens em round, mas nunca reinstanciar o array.
     private int roundsIndex;
 
     public Hand(Player player1, Player player2){
@@ -26,24 +26,25 @@ public class Hand {
     }
 
     public void playRound(){
-        if(roundsIndex > 2) return;
+        if(roundsIndex > 2) return; // TODO aqui, no caso, não faz se isDone
         Round round = new Round(player1.getName(), player1.chooseCard(), player2.getName(), player2.chooseCard(), vira);
         System.out.println("winner: "+round.getWinner());
         rounds[roundsIndex++] = round;
     }
 
     public boolean isDone(){
-        return isHandFinished();
+        return isHandFinished(); // não precisa criar outro método como o a seguir para a mesma coisa, puxe a implementação para dentro desse (ctrl + alt + n)
     }
 
     private boolean isHandFinished(){
         return rounds[0] != null && rounds[1] != null && rounds[2] != null;
-    }
+    } // TODO aqui está errado, você deve ver se a hand acabou de acordo com as regras da prova (empate/vitoria, empate-empate-vitoria, ...)
 
     public String getWinner(){
         return getNameWinner();
-    }
+    } // TODO idem aqui, não precisa extrair para usar em um lugar só. Puxe a implementação para cá
 
+    // TODO dá melhorar a implementação dos métodos a seguir. Pense top down, eliminando possibilidades o mais rápido possível.
     private String getNameWinner() {
         if (!isDone()) {
             return null;

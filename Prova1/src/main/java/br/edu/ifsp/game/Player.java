@@ -15,7 +15,7 @@ public class Player {
     public void setCards(Card[] cards){
         indexChose = 2;
         for(int i = 0; i<3; i++){
-            this.cards[i] = cards[i];
+            this.cards[i] = cards[i]; //TODO você não precisa copiar item a item. É só fazer this.cards = cards e depois index = cards.lenght
         }
     }
 

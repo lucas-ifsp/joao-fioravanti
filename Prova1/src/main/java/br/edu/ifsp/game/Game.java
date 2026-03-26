@@ -21,7 +21,7 @@ public class Game {
         }
         Hand handInGame = hands[handsCounter-1];
         while (!handInGame.isDone()){
-            handInGame.playRound();
+            handInGame.playRound(); // TODO aqui tá diferente do pedido na prova. Leia novamente a spec. Ele só deve jogar um round por vez.
         }
         Player winnerHand = getWinnerHand(handInGame);
         winnerHand.incrementScore();
@@ -46,7 +46,7 @@ public class Game {
         if(!isDone()) {
             return null;
         }
-        if(player1.getScore() ==12){
+        if(player1.getScore() ==12){ // TODO dá para usar if ternário.
             return player1;
         }
         return player2;
