@@ -6,10 +6,11 @@ public class Round {
     private final String winner;
 
     public Round(String player1, Card cardPlayer1, String player2, Card cardPlayer2, Card vira){
-        if(cardPlayer1.compareValueTo(cardPlayer2, vira) == 0){
+        final int result = cardPlayer1.compareValueTo(cardPlayer2, vira);
+        if(result == 0){ // TODO não precisa comparar sempre, dá para simplificar extraindo a variável, como acima.
             winner = null;
         }
-        else if(cardPlayer1.compareValueTo(cardPlayer2, vira) > 0){
+        else if(result > 0){
             winner = player1;
         }
         else {
