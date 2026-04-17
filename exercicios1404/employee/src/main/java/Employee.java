@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 public class Employee {
     private final String id;
@@ -23,6 +24,29 @@ public class Employee {
         if(salary <= 0) return null;
         if(dateOfEmployment.isBefore(LocalDate.now())) return null;
         return new Employee(id, name, jobTitle, salary, dateOfEmployment);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", salary=" + salary +
+                ", dateOfEmployment=" + dateOfEmployment +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this) return true;
+        if(!(obj instanceof  Employee employeeCompared)) return false;
+        return  employeeCompared.getId().equals(id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, jobTitle, salary, dateOfEmployment);
     }
 
     public double getYearsOfService(){
