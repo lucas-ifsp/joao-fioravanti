@@ -1,3 +1,5 @@
+package classesEinterface;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class Employee {
         if(id == null || id.isBlank()) return null;
         if(name == null || name.isBlank()) return null;
         if(salary <= 0) return  null;
-        if(dateOfEmployment.isBefore(LocalDate.now())) return null;
+        //if(dateOfEmployment.isBefore(LocalDate.now())) return null;
         return new Employee(id, name, salary, dateOfEmployment);
     }
 
@@ -44,17 +46,17 @@ public class Employee {
         if(name == null || name.isBlank()) return null;
         if(jobTitle == null || jobTitle.isBlank()) return null;
         if(salary <= 0) return  null;
-        if(dateOfEmployment.isBefore(LocalDate.now())) return null;
+        //if(dateOfEmployment.isBefore(LocalDate.now())) return null; desativei para testes
         return new Employee(id, name, salary, dateOfEmployment, jobTitle);
     }
 
     public double getYearsOfService(){
      return (double) Period.between(dateOfEmployment, LocalDate.now()).getMonths()/12;
     }
-    public void addPaycheck(LocalDate payday){
+    protected void addPaycheck(LocalDate payday){
         paychecks.add(new Paycheck(payday, salary));
     }
-    public void removePaycheck(Paycheck paycheck){
+    protected void removePaycheck(Paycheck paycheck){
         if(paycheck == null) return;
         paychecks.remove(paycheck);
     }
@@ -87,7 +89,7 @@ public class Employee {
         JobTitle = jobTitle;
     }
 
-    public void setSalary(double salary) {
+    protected void setSalary(double salary) {
         if(salary <= this.salary) return;
         this.salary = salary;
     }
@@ -101,5 +103,16 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", JobTitle='" + JobTitle + '\'' +
+                ", salary=" + salary +
+                ", dateOfEmployment=" + dateOfEmployment +
+                '}';
     }
 }

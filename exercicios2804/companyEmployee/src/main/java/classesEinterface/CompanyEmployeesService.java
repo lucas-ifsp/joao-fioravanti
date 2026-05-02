@@ -1,3 +1,5 @@
+package classesEinterface;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -59,6 +61,7 @@ public class CompanyEmployeesService implements ICompany<Employee, String, Strin
     @Override
     public Double averageSalaryOf(String jobtitle) {
         return employees.stream()
+                .filter(e -> e.getJobTitle().equals(jobtitle))
                 .mapToDouble(e -> e.getSalary())
                 .average()
                 .orElse(-1);
