@@ -75,7 +75,7 @@ public class CompanyEmployeesService implements ICompany<Employee, String, Strin
         return employees.stream()
                 // TODO O que você quer fazer? (A || B) && C ou A || (B && C) ?  ANDs podem ser divididos em filters consecutivos para melhorar a clareza
                 .filter(e ->  e.getDateOfEmployment().isEqual(initial) || e.getDateOfEmployment().isAfter(initial) && e.getDateOfEmployment().isBefore(end))
-                .mapToDouble(e -> e.getSalary())
+                .mapToDouble(Employee::getSalary)
                 .average()
                 .orElse(-1);// 0
     }
